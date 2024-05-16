@@ -8,13 +8,6 @@ use Illuminate\Support\Facades\Http;
 
 class ApiService
 {
-    protected static ?string $host = 'https://maakeenfactuur.nl/api';
-
-    public static function setHost(string $host): void
-    {
-        self::$host = $host;
-    }
-
     /**
      * @throws ApiErrorException
      */
@@ -47,9 +40,10 @@ class ApiService
     protected static function request(string $method, $url, array $params = []): Response
     {
         $params['api_token'] = config('maakeenfactuur.api_key');
+        $host = config('maakeenfactuur.host', 'https://maakeenfactuur.nl/api');
 
         /** @var Response $response */
-        $response = Http::$method($url, $params);
+        $response = Http::$method("$host$url", $params);
 
         if ($response->getStatusCode() === 422) {
             throw new ApiErrorException($response);
