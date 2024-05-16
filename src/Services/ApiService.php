@@ -2,44 +2,27 @@
 
 namespace Gyvex\MaakEenFactuur\Services;
 
+use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
-use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 
 class ApiService
 {
-    /**
-     * @var string | null
-     */
     protected static ?string $apiKey;
 
-    /**
-     * @var string|null
-     */
     protected static ?string $host = 'https://maakeenfactuur.nl/api';
 
-    /**
-     * @param string|null $apiKey
-     * @return void
-     */
     public static function setApiKey(?string $apiKey): void
     {
         static::$apiKey = $apiKey;
     }
 
-    /**
-     * @param string $host
-     * @return void
-     */
     public static function setHost(string $host): void
     {
         self::$host = $host;
     }
 
     /**
-     * @param string $url
-     * @param array $params
-     * @return mixed
      * @throws ApiErrorException
      */
     public static function get(string $url, array $params = []): mixed
@@ -48,9 +31,6 @@ class ApiService
     }
 
     /**
-     * @param string $url
-     * @param array $params
-     * @return mixed
      * @throws ApiErrorException
      */
     public static function post(string $url, array $params = []): mixed
@@ -59,9 +39,6 @@ class ApiService
     }
 
     /**
-     * @param string $url
-     * @param array $params
-     * @return mixed
      * @throws ApiErrorException
      */
     public static function put(string $url, array $params = []): mixed
@@ -70,10 +47,8 @@ class ApiService
     }
 
     /**
-     * @param string $method
-     * @param $url
-     * @param array $params
      * @return mixed
+     *
      * @throws ApiErrorException
      */
     protected static function request(string $method, $url, array $params = []): Response

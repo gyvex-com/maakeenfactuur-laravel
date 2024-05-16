@@ -2,8 +2,8 @@
 
 namespace Gyvex\MaakEenFactuur\Facades;
 
-use Illuminate\Support\Facades\Facade;
 use Gyvex\MaakEenFactuur\Popo\CustomerPopo;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static CustomerPopo[]|array all()
@@ -14,9 +14,6 @@ use Gyvex\MaakEenFactuur\Popo\CustomerPopo;
  */
 class Customer extends Facade
 {
-    /**
-     * @return string
-     */
     protected static function getFacadeAccessor(): string
     {
         return 'customer';
