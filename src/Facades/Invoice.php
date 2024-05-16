@@ -2,8 +2,8 @@
 
 namespace Gyvex\MaakEenFactuur\Facades;
 
-use Illuminate\Support\Facades\Facade;
 use Gyvex\MaakEenFactuur\Popo\InvoicePopo;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static InvoicePopo[]|array all()
@@ -15,9 +15,6 @@ use Gyvex\MaakEenFactuur\Popo\InvoicePopo;
  */
 class Invoice extends Facade
 {
-    /**
-     * @return string
-     */
     protected static function getFacadeAccessor(): string
     {
         return 'invoice';

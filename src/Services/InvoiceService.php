@@ -2,17 +2,15 @@
 
 namespace Gyvex\MaakEenFactuur\Services;
 
-use Scrumble\Popo\BasePopo;
-use Illuminate\Support\Collection;
-use Illuminate\Http\Client\Response;
-use Gyvex\MaakEenFactuur\Popo\InvoicePopo;
 use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
+use Gyvex\MaakEenFactuur\Popo\InvoicePopo;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Collection;
+use Scrumble\Popo\BasePopo;
 
 class InvoiceService
 {
     /**
-     * @param array $data
-     * @return InvoicePopo
      * @throws ApiErrorException
      */
     public static function create(array $data): InvoicePopo
@@ -23,9 +21,6 @@ class InvoiceService
     }
 
     /**
-     * @param int $invoiceId
-     * @param array $data
-     * @return InvoicePopo
      * @throws ApiErrorException
      */
     public static function update(int $invoiceId, array $data): InvoicePopo
@@ -37,6 +32,7 @@ class InvoiceService
 
     /**
      * @return Collection<int, InvoicePopo>
+     *
      * @throws ApiErrorException
      */
     public static function all(): Collection
@@ -47,8 +43,6 @@ class InvoiceService
     }
 
     /**
-     * @param int $invoiceId
-     * @return InvoicePopo
      * @throws ApiErrorException
      */
     public static function find(int $invoiceId): InvoicePopo
@@ -58,20 +52,14 @@ class InvoiceService
         return static::parseResponseToPopo($response, InvoicePopo::class);
     }
 
-    /**
-     * @param Response $response
-     * @param string $popoClass
-     * @return InvoicePopo
-     */
     protected static function parseResponseToPopo(Response $response, string $popoClass): InvoicePopo
     {
         $responseData = $response->json();
+
         return new $popoClass($responseData);
     }
 
     /**
-     * @param Response $response
-     * @param string $popoClass
      * @return Collection<int, BasePopo>
      */
     protected static function parseResponseToPopoArray(Response $response, string $popoClass): Collection

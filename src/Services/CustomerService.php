@@ -3,16 +3,17 @@
 namespace Gyvex\MaakEenFactuur\Services;
 
 use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
-use Scrumble\Popo\BasePopo;
-use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 use Gyvex\MaakEenFactuur\Facades\Customer;
 use Gyvex\MaakEenFactuur\Popo\CustomerPopo;
+use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
+use Scrumble\Popo\BasePopo;
 
 class CustomerService
 {
     /**
      * @return Collection<int, Customer>
+     *
      * @throws ApiErrorException
      */
     public static function all(): Collection
@@ -23,8 +24,6 @@ class CustomerService
     }
 
     /**
-     * @param array $data
-     * @return CustomerPopo
      * @throws ApiErrorException
      */
     public static function create(array $data): CustomerPopo
@@ -35,8 +34,6 @@ class CustomerService
     }
 
     /**
-     * @param int $customerId
-     * @return CustomerPopo
      * @throws ApiErrorException
      */
     public static function find(int $customerId): CustomerPopo
@@ -46,11 +43,6 @@ class CustomerService
         return static::parseResponseToPopo($response, CustomerPopo::class);
     }
 
-    /**
-     * @param Response $response
-     * @param string $popoClass
-     * @return CustomerPopo
-     */
     protected static function parseResponseToPopo(Response $response, string $popoClass): CustomerPopo
     {
         $responseData = $response->json();
@@ -59,8 +51,6 @@ class CustomerService
     }
 
     /**
-     * @param Response $response
-     * @param string $popoClass
      * @return Collection<int, BasePopo>
      */
     protected static function parseResponseToPopoArray(Response $response, string $popoClass): Collection
