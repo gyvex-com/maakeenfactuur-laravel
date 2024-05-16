@@ -19,13 +19,7 @@ composer require gyvex-com/maakeenfactuur-laravel
 
 ## Configuration
 
-The API key is handled by the `ApiService` of the package. Set up your API key to authenticate requests:
-
-```php
-use Gyvex\MaakEenFactuur\Services\ApiService;
-
-ApiService::setApiKey('your_api_key_here');
-```
+The API key is handled by the `ApiService` of the package. Set up your API key to authenticate requests.
 
 By default this will be loaded from the config file `config/maakeenfactuur.php` which can be exported by running:
 
