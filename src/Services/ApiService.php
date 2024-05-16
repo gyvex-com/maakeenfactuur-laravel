@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Http;
 
 class ApiService
 {
-    protected static ?string $apiKey;
-
+    /**
+     * @var string|null
+     */
     protected static ?string $host = 'https://maakeenfactuur.nl/api';
 
-    public static function setApiKey(?string $apiKey): void
-    {
-        static::$apiKey = $apiKey;
-    }
-
+    /**
+     * @param string $host
+     * @return void
+     */
     public static function setHost(string $host): void
     {
         self::$host = $host;
@@ -53,7 +53,7 @@ class ApiService
      */
     protected static function request(string $method, $url, array $params = []): Response
     {
-        $params['api_token'] = static::$apiKey;
+        $params['api_token'] = config('maakeenfactuur.api_key');
 
         /** @var Response $response */
         $response = Http::$method($url, $params);
