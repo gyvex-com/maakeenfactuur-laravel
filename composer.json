@@ -1,24 +1,25 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "gyvex-com/maakeenfactuur-laravel",
+    "description": "Laravel package for easily connecting with MaakEenFactuur.nl",
     "keywords": [
-        ":vendor_name",
+        "gyvex-com",
         "laravel",
-        ":package_slug"
+        "maakeenfactuur-laravel"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/gyvex-com/maakeenfactuur-laravel",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Gyvex",
+            "email": "niels@gyvex.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.2",
-        "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0"
+        "illuminate/contracts": "^10.0||^11.0",
+        "scrumble-nl/popo": "*",
+        "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -35,13 +36,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Gyvex\\MaakEenFactuur\\": "src/",
+            "Gyvex\\MaakEenFactuur\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Gyvex\\MaakEenFactuur\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -73,10 +74,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+              "Gyvex\\MaakEenFactuur\\InvoiceServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Customer": "Gyvex\\MaakEenFactuur\\Facades\\Customer",
+                "Invoice": "Gyvex\\MaakEenFactuur\\Facades\\Invoice"
             }
         }
     },

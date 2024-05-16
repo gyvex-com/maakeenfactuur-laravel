@@ -1,93 +1,98 @@
-# :package_description
+# MaakEenFactuur Laravel Package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+📜 **Overview**  
+MaakEenFactuur-Laravel is a PHP library that provides simplified interfaces for managing customers and invoices via our API. It includes two primary facades: `Customer` and `Invoice`, which are backed by powerful service classes handling all interactions with the API.
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+## Features
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+- **Customer management**: Easily retrieve, create, and manage customer information.
+- **Invoice processing**: Create, update, and fetch invoices with minimal hassle.
+- **Exception handling**: Robust error management to handle API responses gracefully.
 
 ## Installation
 
-You can install the package via composer:
+To use Gyvex MaakEenFactuur in your project, require it via Composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require gyvex-com/maakeenfactuur-laravel
 ```
 
-You can publish and run the migrations with:
+## Configuration
 
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
-```
-
-This is the contents of the published config file:
+The API key is handled by the `ApiService` of the package. Set up your API key to authenticate requests:
 
 ```php
-return [
-];
+use Gyvex\MaakEenFactuur\Services\ApiService;
+
+ApiService::setApiKey('your_api_key_here');
 ```
 
-Optionally, you can publish the views using
+By default this will be loaded from the config file `config/maakeenfactuur.php` which can be exported by running:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-views"
+php artisan vendor:publish --tag="maakeenfactuur-config"
+```
+
+This will add the default `.env` variable `MAAKEENFACTUUR_API_KEY` which can be set:
+
+```
+MAAKEENFACTUUR_API_KEY="YOUR_API_KEY"
 ```
 
 ## Usage
 
+### Managing Customers
+
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+use Gyvex\MaakEenFactuur\Facades\Customer;
+
+// Fetch all customers
+$customers = Customer::all();
+
+// Create a new customer
+$newCustomer = Customer::create(['name' => 'John Doe', 'email' => 'john@example.com']);
+
+// Find a specific customer
+$customer = Customer::find(1);
 ```
 
-## Testing
+### Handling Invoices
 
-```bash
-composer test
+```php
+use Gyvex\MaakEenFactuur\Facades\Invoice;
+
+// Create an invoice
+$newInvoice = Invoice::create(['customer_id' => 1, 'amount' => 100.00]);
+
+// Update an existing invoice
+$updatedInvoice = Invoice::update(1, ['amount' => 150.00]);
+
+// Fetch all invoices
+$invoices = Invoice::all();
+
+// Find a specific invoice
+$invoice = Invoice::find(1);
 ```
 
-## Changelog
+## Handling API Errors
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Both `Customer` and `Invoice` services throw an `ApiErrorException` if an API request fails, allowing you to handle errors gracefully in your application.
+
+```php
+try {
+    $invoice = Invoice::find(1);
+} catch (Gyvex\MaakEenFactuur\Exception\ApiErrorException $e) {
+    // Handle error
+    echo 'Error: ' . $e->getMessage();
+}
+```
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+Contributions are welcome! Please feel free to submit a pull request or create an issue if you have any suggestions or find any bugs.
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
+
+This README is structured to provide a comprehensive introduction and guide on how to use the library, complete with installation instructions, usage examples, and basic error handling. Adjust the details according to your actual project structure and requirements.
