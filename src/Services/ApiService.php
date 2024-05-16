@@ -2,9 +2,9 @@
 
 namespace Gyvex\MaakEenFactuur\Services;
 
+use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 
 class ApiService
 {
