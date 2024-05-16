@@ -2,9 +2,9 @@
 
 namespace Gyvex\MaakEenFactuur;
 
-use Spatie\LaravelPackageTools\Package;
-use Gyvex\MaakEenFactuur\Services\InvoiceService;
 use Gyvex\MaakEenFactuur\Services\CustomerService;
+use Gyvex\MaakEenFactuur\Services\InvoiceService;
+use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class InvoiceServiceProvider extends PackageServiceProvider

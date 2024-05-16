@@ -8,15 +8,8 @@ use Illuminate\Support\Facades\Http;
 
 class ApiService
 {
-    /**
-     * @var string|null
-     */
     protected static ?string $host = 'https://maakeenfactuur.nl/api';
 
-    /**
-     * @param string $host
-     * @return void
-     */
     public static function setHost(string $host): void
     {
         self::$host = $host;
