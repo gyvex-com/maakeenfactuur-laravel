@@ -45,6 +45,7 @@ class CustomerService
 
     protected static function parseResponseToPopo(Response $response, string $popoClass): CustomerPopo
     {
+        /** @var array<string, mixed> $responseData */
         $responseData = $response->json();
 
         return new $popoClass($responseData);
