@@ -2,7 +2,6 @@
 
 namespace Gyvex\MaakEenFactuur\Services;
 
-use Illuminate\Support\Facades\Log;
 use Scrumble\Popo\BasePopo;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Client\Response;
@@ -44,11 +43,6 @@ class CustomerService
         return static::parseResponseToPopo($response, CustomerPopo::class);
     }
 
-    /**
-     * @param Response $response
-     * @param string $popoClass
-     * @return CustomerPopo
-     */
     protected static function parseResponseToPopo(Response $response, string $popoClass): CustomerPopo
     {
         /** @var array<string, mixed> $responseData */
