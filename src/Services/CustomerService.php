@@ -5,7 +5,7 @@ namespace Gyvex\MaakEenFactuur\Services;
 use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 use Gyvex\MaakEenFactuur\Facades\Customer;
 use Gyvex\MaakEenFactuur\Popo\CustomerPopo;
-use Illuminate\Http\Response;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Scrumble\Popo\BasePopo;
 
@@ -45,6 +45,7 @@ class CustomerService
 
     protected static function parseResponseToPopo(Response $response, string $popoClass): CustomerPopo
     {
+        /** @var array<string, mixed> $responseData */
         $responseData = $response->json();
 
         return new $popoClass($responseData);
