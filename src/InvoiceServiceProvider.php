@@ -9,10 +9,6 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class InvoiceServiceProvider extends PackageServiceProvider
 {
-    /**
-     * @param Package $package
-     * @return void
-     */
     public function configurePackage(Package $package): void
     {
         $package
