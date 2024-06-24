@@ -19,7 +19,7 @@ class InvoiceService
         /** @var Response $response */
         $response = ApiService::post('/invoice/store', $data);
 
-        Log::info("MaakEenFactuur response:");
+        Log::info('MaakEenFactuur response:');
         Log::info($response->body());
 
         return static::parseResponseToPopo($response, InvoicePopo::class);
