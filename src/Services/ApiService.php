@@ -49,7 +49,7 @@ class ApiService
         /** @var Response $response */
         $response = Http::withHeaders($headers)->$method("$host$url?api_token=".$apiToken, $params);
 
-        if ($response->getStatusCode() === 422) {
+        if ($response->status() === 422) {
             throw new ApiErrorException($response);
         }
 
