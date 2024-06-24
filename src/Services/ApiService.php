@@ -39,7 +39,6 @@ class ApiService
      */
     protected static function request(string $method, $url, array $params = []): Response
     {
-        $params['api_token'] = config('maakeenfactuur.api_key');
         $host = config('maakeenfactuur.host', 'https://maakeenfactuur.nl/api');
         $headers = [
             'Content-Type' => 'application/json',
@@ -47,7 +46,7 @@ class ApiService
         ];
 
         /** @var Response $response */
-        $response = Http::withHeaders($headers)->$method("$host$url?api_token=" . $params['api_token']);
+        $response = Http::withHeaders($headers)->$method("$host$url?api_token=" . $params['api_token'], $params);
 
         if ($response->getStatusCode() === 422) {
             throw new ApiErrorException($response);
