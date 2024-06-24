@@ -46,10 +46,8 @@ class ApiService
             'Accept' => 'application/json',
         ];
 
-        $jsonParams = json_encode($params);
-
         /** @var Response $response */
-        $response = Http::withHeaders($headers)->$method("$host$url", $jsonParams);
+        $response = Http::withHeaders($headers)->$method("$host$url?api_token=".$params['api_token']);
 
         if ($response->getStatusCode() === 422) {
             throw new ApiErrorException($response);
