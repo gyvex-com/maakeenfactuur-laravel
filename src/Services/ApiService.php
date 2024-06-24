@@ -43,7 +43,7 @@ class ApiService
         $host = config('maakeenfactuur.host', 'https://maakeenfactuur.nl/api');
         $headers = [
             'Content-Type' => 'application/json',
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
         ];
 
         $jsonParams = json_encode($params);
