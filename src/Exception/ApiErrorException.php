@@ -16,11 +16,11 @@ class ApiErrorException extends Exception
         $this->response = $response;
         $this->errorMessage = $this->getErrorMessage();
 
-        parent::__construct($this->errorMessage, $this->response->getStatusCode());
+        parent::__construct($this->errorMessage, $this->response->status());
     }
 
     public function getErrorMessage(): string
     {
-        return json_decode($this->response->content())['error']['message'];
+        return json_decode($this->response->body())['error']['message'];
     }
 }
