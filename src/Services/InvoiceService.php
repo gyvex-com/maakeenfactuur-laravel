@@ -6,6 +6,7 @@ use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 use Gyvex\MaakEenFactuur\Popo\InvoicePopo;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Scrumble\Popo\BasePopo;
 
 class InvoiceService
@@ -15,7 +16,11 @@ class InvoiceService
      */
     public static function create(array $data): InvoicePopo
     {
+        /** @var Response $response */
         $response = ApiService::post('/invoice/store', $data);
+
+        Log::info('MaakEenFactuur response:');
+        Log::info($response->body());
 
         return static::parseResponseToPopo($response, InvoicePopo::class);
     }
