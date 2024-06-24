@@ -3,7 +3,7 @@
 namespace Gyvex\MaakEenFactuur\Exception;
 
 use Exception;
-use Illuminate\Http\Response;
+use Illuminate\Http\Client\Response;
 
 class ApiErrorException extends Exception
 {
