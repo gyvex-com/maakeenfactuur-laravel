@@ -21,6 +21,6 @@ class ApiErrorException extends Exception
 
     public function getErrorMessage(): string
     {
-        return json_decode($this->response->body(), true)['error']['message'];
+        return json_encode($this->response->body(), true);
     }
 }
