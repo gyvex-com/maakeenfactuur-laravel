@@ -25,9 +25,6 @@ class InvoicePopo extends BasePopo
      */
     public ?array $items;
 
-    /**
-     * @param array $jsonData
-     */
     public function __construct(array $jsonData)
     {
         $this->id = $jsonData['id'];
