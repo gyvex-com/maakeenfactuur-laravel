@@ -19,9 +19,6 @@ class InvoiceService
         /** @var Response $response */
         $response = ApiService::post('/invoice/store', $data);
 
-        Log::info('MaakEenFactuur response:');
-        Log::info($response->body());
-
         return static::parseResponseToPopo($response, InvoicePopo::class);
     }
 
@@ -57,6 +54,24 @@ class InvoiceService
         return static::parseResponseToPopo($response, InvoicePopo::class);
     }
 
+    /**
+     * @param int $invoiceId
+     * @return Response
+     * @throws ApiErrorException
+     */
+    public static function pdf(int $invoiceId): Response
+    {
+        /** @var Response $response */
+        $response = ApiService::get("/invoice/{$invoiceId}/pdf");
+
+        return $response;
+    }
+
+    /**
+     * @param Response $response
+     * @param string $popoClass
+     * @return InvoicePopo
+     */
     protected static function parseResponseToPopo(Response $response, string $popoClass): InvoicePopo
     {
         $responseData = $response->json();
