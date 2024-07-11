@@ -6,7 +6,6 @@ use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 use Gyvex\MaakEenFactuur\Popo\InvoicePopo;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Scrumble\Popo\BasePopo;
 
 class InvoiceService
@@ -55,8 +54,6 @@ class InvoiceService
     }
 
     /**
-     * @param int $invoiceId
-     * @return Response
      * @throws ApiErrorException
      */
     public static function pdf(int $invoiceId): Response
@@ -67,11 +64,6 @@ class InvoiceService
         return $response;
     }
 
-    /**
-     * @param Response $response
-     * @param string $popoClass
-     * @return InvoicePopo
-     */
     protected static function parseResponseToPopo(Response $response, string $popoClass): InvoicePopo
     {
         $responseData = $response->json();
