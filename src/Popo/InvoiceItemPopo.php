@@ -17,4 +17,20 @@ class InvoiceItemPopo extends BasePopo
     public float $total;
 
     public float $vat_percentage;
+
+    public function __construct(
+        int $id,
+        string $description,
+        float $quantity,
+        float $unit_price,
+        float $total,
+        float $vat_percentage,
+    ) {
+        $this->id = $id;
+        $this->description = $description;
+        $this->quantity = $quantity;
+        $this->unit_price = $unit_price;
+        $this->total = $total;
+        $this->vat_percentage = $vat_percentage;
+    }
 }
