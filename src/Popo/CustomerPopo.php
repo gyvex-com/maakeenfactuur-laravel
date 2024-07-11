@@ -32,6 +32,7 @@ class CustomerPopo extends BasePopo
         $this->email = $jsonData['email'];
         $this->name = $jsonData['name'];
         $this->phone = array_key_exists('phone', $jsonData) ? $jsonData['phone'] : '';
+        $this->billing_address = array_key_exists('billing_address', $jsonData) ? $jsonData['billing_address'] : '';
         $this->company_name = array_key_exists('company_name', $jsonData) ? $jsonData['company_name'] : '';
         $this->vat_number = array_key_exists('vat_number', $jsonData) ? $jsonData['vat_number'] : '';
         $this->zip_code = array_key_exists('zip_code', $jsonData) ? $jsonData['zip_code'] : '';
