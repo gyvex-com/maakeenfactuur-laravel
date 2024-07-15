@@ -2,7 +2,6 @@
 
 namespace Gyvex\MaakEenFactuur\Popo;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Scrumble\Popo\BasePopo;
 
 class InvoicePopo extends BasePopo
@@ -28,10 +27,10 @@ class InvoicePopo extends BasePopo
      */
     public ?array $items;
 
-    public function __construct(Authenticatable $user, array $jsonData)
+    public function __construct(array $jsonData)
     {
         $this->id = $jsonData['id'];
-        $this->user_id = $user->id;
+        $this->user_id = $jsonData['user_id'];
         $this->invoice_number = $jsonData['invoice_number'];
         $this->date = $jsonData['date'];
         $this->due_date = $jsonData['due_date'];
