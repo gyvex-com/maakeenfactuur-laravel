@@ -42,7 +42,7 @@ class InvoicePopo extends BasePopo
                 $item['description'],
                 $item['quantity'],
                 $item['unit_price'],
-                $item['total_price'],
+                $item['total'],
                 $item['vat_percentage'],
             );
         }
