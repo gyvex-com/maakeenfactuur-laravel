@@ -8,8 +8,6 @@ class InvoicePopo extends BasePopo
 {
     public int $id;
 
-    public int $user_id;
-
     public string $invoice_number;
 
     public string $date;
@@ -30,7 +28,6 @@ class InvoicePopo extends BasePopo
     public function __construct(array $jsonData)
     {
         $this->id = $jsonData['id'];
-        $this->user_id = $jsonData['user_id'];
         $this->invoice_number = $jsonData['invoice_number'];
         $this->date = $jsonData['date'];
         $this->due_date = $jsonData['due_date'];
