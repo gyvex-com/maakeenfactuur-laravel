@@ -6,6 +6,7 @@ use Gyvex\MaakEenFactuur\Exception\ApiErrorException;
 use Gyvex\MaakEenFactuur\Popo\InvoicePopo;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Scrumble\Popo\BasePopo;
 
 class InvoiceService
@@ -48,9 +49,10 @@ class InvoiceService
      */
     public static function find(int $invoiceId): InvoicePopo
     {
+        /** @var Response $response */
         $response = ApiService::get("/invoice/{$invoiceId}");
 
-        return static::parseResponseToPopo($response, InvoicePopo::class);
+        return new InvoicePopo(Auth::user(), $response->json());
     }
 
     /**
@@ -80,6 +82,12 @@ class InvoiceService
         $popos = Collection::make();
 
         foreach ($responseData as $data) {
+            if ($popoClass === InvoicePopo::class) {
+                $popos->add(new $popoClass(Auth::user(), $data));
+
+                continue;
+            }
+
             $popos->add(new $popoClass($data));
         }
 
