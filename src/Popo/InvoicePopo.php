@@ -2,7 +2,6 @@
 
 namespace Gyvex\MaakEenFactuur\Popo;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Scrumble\Popo\BasePopo;
 
 class InvoicePopo extends BasePopo
