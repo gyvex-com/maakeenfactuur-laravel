@@ -70,6 +70,10 @@ class InvoiceService
     {
         $responseData = $response->json();
 
+        if ($popoClass === InvoicePopo::class) {
+            return new $popoClass(Auth::user(), $responseData);
+        }
+
         return new $popoClass($responseData);
     }
 
