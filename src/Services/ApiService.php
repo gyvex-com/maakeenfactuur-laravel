@@ -42,7 +42,7 @@ class ApiService
         $apiToken = config('maakeenfactuur.api_key');
         $host = config('maakeenfactuur.host', 'https://maakeenfactuur.nl/api');
         $headers = [
-            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $apiToken,
             'Accept' => 'application/json',
         ];
 
