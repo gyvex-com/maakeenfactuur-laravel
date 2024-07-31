@@ -55,8 +55,6 @@ class InvoiceService
     }
 
     /**
-     * @param int $invoiceId
-     * @return Response
      * @throws ApiErrorException
      */
     public static function pdf(int $invoiceId): Response

@@ -16,11 +16,11 @@ class InvoiceServiceProvider extends PackageServiceProvider
             ->hasConfigFile();
 
         $this->app->singleton('invoice', function () {
-            return new InvoiceService();
+            return new InvoiceService;
         });
 
         $this->app->singleton('customer', function () {
-            return new CustomerService();
+            return new CustomerService;
         });
     }
 }
